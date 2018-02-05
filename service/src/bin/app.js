@@ -8,7 +8,7 @@ app.on('error', err => {
     console.log('server error', err)
 });
 
-app.listen(3000,()=>{
+app.listen(3001,()=>{
     console.log('server running at localhost:3000')
 })
 
