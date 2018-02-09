@@ -5,7 +5,7 @@ koa + mysql + react 前后分离 商城项目
 前端页面     
 
 
-## service  
+## server  
 服务端     
 
 
