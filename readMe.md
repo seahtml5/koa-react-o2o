@@ -7,7 +7,12 @@ koa + mysql + react 前后分离 商城项目
 
 ## server  
 服务端     
+```bash
+    cd server
+    
+    npm run dev
 
+```
 
 ## mysql        
 ```sql
