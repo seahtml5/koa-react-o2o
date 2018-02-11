@@ -3,13 +3,17 @@ koa + mysql + react 前后分离 商城项目
 
 ## frontend      
 前端页面     
-
+```bash
+    cd frontend
+    
+    npm run dev
+```
 
 ## server  
 服务端     
 ```bash
     cd server
-    
+
     npm run dev
 
 ```
