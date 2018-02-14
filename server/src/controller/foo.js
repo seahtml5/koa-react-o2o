@@ -7,7 +7,6 @@ module.exports = {
         let date =   sev.util.formatDate()
         let name =   sev.foo.getName()
         let greet = 'greeting from user1 ' + date + ' ' + name
-        console.log(greet)
         ctx.body = greet
     }
 }

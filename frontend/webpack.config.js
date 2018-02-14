@@ -70,6 +70,12 @@ module.exports = {
     devServer: {
         port: 8089,
         hot: true,
-        contentBase: path.resolve(__dirname, './dist')
+        contentBase: path.resolve(__dirname, './dist'),
+        proxy: {
+            "/api": {
+                target: "http://localhost:3001",
+                pathRewrite: { "^/api": "" }
+            }
+        }
     }
 }

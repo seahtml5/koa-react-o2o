@@ -1,3 +1,3 @@
-import {axios,qs} from './index'
+import {axios,qs,base} from './index'
 
-export const HOME = params => { return axios.get('user', {params:params}); }
+export const HOME = params => { return axios.get(`${base}`, {params:params}); }
