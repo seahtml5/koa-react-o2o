@@ -4,11 +4,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, '../src/index.js'),
 
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist')
+        path: path.resolve(__dirname, '../dist')
     },
 
     module: {
@@ -63,7 +63,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             inject: 'body',
-            template: path.resolve(__dirname, './src/index.tpl.html'),
+            template: path.resolve(__dirname, '../src/index.tpl.html'),
             filename: 'index.html'
         }),
 
@@ -74,7 +74,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.css', '.less'],
         alias: {
-            "@": path.resolve(__dirname, './src')
+            "@": path.resolve(__dirname, '../src')
         }
     }
 }

@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const dev = require('../config/dev')
+const dev = require('../config')
 const port = dev.port
 const proxyTarget = dev.proxyTarget
 
