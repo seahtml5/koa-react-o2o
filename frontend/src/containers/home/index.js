@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import './style'
 import { HOME } from '@/api/home'
 
+import NavHeader from '@/components/navHeader'
+import Banner from '@/components/banner'
+
+import { Button } from 'antd'
+
+const LOGO = require('../../assets/images/logo.png') 
 
 export default class Home extends Component {
     constructor(){
@@ -24,8 +30,10 @@ export default class Home extends Component {
     render() {
         return (
             <div className='home'>
-                <h2>Welcome</h2>
-                <h3>To Project frontend</h3>
+                <NavHeader />
+                <img src={require('../../assets/images/logo.png')} alt="" className='logo'/>
+                <Button type='primary' icon="plus"></Button>
+                <Banner />
             </div>
         )
     }
