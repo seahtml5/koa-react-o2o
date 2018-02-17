@@ -1,3 +1,50 @@
-.header {
-    color: red;
+.container {
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    height: 36px;
+    line-height: 36px;
+
+    .header {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+       
+
+        .city-wrapper {
+            span {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            i {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background:url(../../assets/images/arrow_down.png) center center no-repeat;
+                transition: all .3s;
+                margin-left: 5px;
+            }
+
+            i.on {
+                transform: rotate(180deg);
+            }
+
+            .focus {
+                background-color: #fff;
+                height: 35px;
+            }
+        }
+
+        .login-wrapper {
+            span {
+                margin: 0 10px;
+            }
+            a {
+                color: #666;
+                font-size: 12px;
+            }
+        }
+    }
 }
