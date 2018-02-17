@@ -33,8 +33,9 @@ export default class Home extends Component {
         return (
             <div className='home'>
                 <NavHeader />
-                <img src={require('../../assets/images/logo.png')} alt="" className='logo'/>
-                <Button type='primary' icon="plus"></Button>
+                <div className="logo-wrapper">
+                    <img src={require('../../assets/images/logo.png')} alt="" className='logo'/>
+                </div>
                 <Banner />
                 <SubTitle />
                 <HomeList />

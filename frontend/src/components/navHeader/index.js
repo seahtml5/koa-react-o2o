@@ -27,6 +27,7 @@ export default class Header extends Component {
 
     
     render() {
+        // 热门城市列表
         const renderHotCity = ()=>{
             if(this.state.hover){
                 return ( 
