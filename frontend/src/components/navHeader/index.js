@@ -6,7 +6,8 @@ export default class Header extends Component {
         super()
         
         this.state = {
-            hover:false
+            hover:false,
+            hotCity:[ '北京','上海','广州','厦门','福州', '南京', '天津', '西安', '贵州', '石家庄', '洛阳', '郑州']
         }
     }
 
@@ -23,20 +24,47 @@ export default class Header extends Component {
             hover: false
         })
     }
+
+    
     render() {
+        const renderHotCity = ()=>{
+            if(this.state.hover){
+                return ( 
+                    <div className="city-list">
+                        <h2 className='title'>热门城市</h2>
+                        <ul className='list-item-wrapper'>
+                            {
+                                this.state.hotCity.map((e, idx) => {
+                                    return (
+                                        <li className='list-item' key={idx}>
+                                            <a href="javascript:;">{e}</a>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>)
+            }else {
+                return ''
+            }
+        }
+
         return (
             <div className="container">
                 <div className='header'>
                     <div className="city-wrapper">
                         <span>北京</span>
                         <span>|</span>
-                        <span className={'toggle-city ' +  (this.state.hover ? 'focus' : '') }
+                        <div className={'toggle-city ' +  (this.state.hover ? 'focus' : '') }
                             onMouseEnter={()=>this.onMouseEnterHandler()}
                             onMouseLeave={()=>this.onMouseLeaveHandler()}
                         >
-                            切换城市
+                            <span>切换城市</span> 
                             <i className={this.state.hover? 'on': ''}></i>
-                        </span>
+                            {
+                                renderHotCity()
+                            }
+                        </div>
                         <span>商户中心</span>
                     </div>
                     <div className="login-wrapper">
