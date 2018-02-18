@@ -1,0 +1,48 @@
+.sub-title {
+    width: 1200px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: 20px;
+        color: #444;
+        font-weight: 600;
+    }
+    
+    .list-wrapper {
+        ul {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            li {
+                width: 74px;
+                height: 14px;
+                text-align: center;
+                border-right: 1px solid #ddd;
+
+                a {
+                    font-size: 12px;
+                    color: #666;
+                    text-decoration: none;
+                }
+
+                // 全部
+                &.all {
+                    border: none;
+                    i {
+                        display: inline-block;
+                        width: 12px;
+                        height: 12px;
+                        background: url('../../assets/images/arrow_right.png') center center no-repeat;
+                    }
+                }
+            }
+        }
+
+    }
+}

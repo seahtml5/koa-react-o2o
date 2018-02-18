@@ -5,7 +5,7 @@ import { HOME } from '@/api/home'
 import NavHeader from '@/components/navHeader'
 import Banner from '@/components/banner'
 import SubTitle from '@/components/subTitle'
-import HomeList from '@/components/homeList'
+import RecommendList from '@/components/recommendList'
 
 import { Button } from 'antd'
 
@@ -33,13 +33,16 @@ export default class Home extends Component {
         return (
             <div className='home'>
                 <NavHeader />
+                {/* logo */}
                 <div className="logo-wrapper">
                     <img src={require('../../assets/images/logo.png')} alt="" className='logo'/>
                 </div>
                 <Banner />
-                <br />
+                
                 <SubTitle />
-                <HomeList />
+                <br />
+                {/* 推荐列表 */}
+                <RecommendList />
             </div>
         )
     }
