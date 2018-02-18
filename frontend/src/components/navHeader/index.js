@@ -11,43 +11,39 @@ export default class Header extends Component {
         }
     }
 
+    // 显示热门城市
     onMouseEnterHandler(){
-        console.log('enter')
         this.setState({
             hover: true
         })
     }
 
+    // 隐藏热门城市
     onMouseLeaveHandler(){
-        console.log('leave')
         this.setState({
             hover: false
         })
     }
 
-    
     render() {
         // 热门城市列表
         const renderHotCity = ()=>{
-            if(this.state.hover){
-                return ( 
-                    <div className="city-list">
-                        <h2 className='title'>热门城市</h2>
-                        <ul className='list-item-wrapper'>
-                            {
-                                this.state.hotCity.map((e, idx) => {
-                                    return (
-                                        <li className='list-item' key={idx}>
-                                            <a href="javascript:;">{e}</a>
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    </div>)
-            }else {
-                return ''
-            }
+            return ( 
+                <div className="city-list">
+                    <h2 className='title'>热门城市</h2>
+                    <ul className='list-item-wrapper'>
+                        {
+                            this.state.hotCity.map((e, idx) => {
+                                return (
+                                    <li className='list-item' key={idx}>
+                                        <a href="javascript:;">{e}</a>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            )
         }
 
         return (
@@ -63,7 +59,7 @@ export default class Header extends Component {
                             <span>切换城市</span> 
                             <i className={this.state.hover? 'on': ''}></i>
                             {
-                                renderHotCity()
+                                this.state.hover ? renderHotCity() : ''
                             }
                         </div>
                         <span>商户中心</span>

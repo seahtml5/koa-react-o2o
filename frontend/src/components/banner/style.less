@@ -18,13 +18,15 @@
         }
 
         .category-wrapper {
+            position: relative;
+
             .category-list {
                 box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 border-left: 1px solid #ccc;
-                background-color: #f0f0f0;
+                background-color: #f6f6f6;
                 .category-item {
                     box-sizing: border-box;
                     border-bottom: 1px solid #ccc;
@@ -37,7 +39,26 @@
                     letter-spacing: 2px;
                     &:hover {
                         cursor: pointer;
+                        background-color: #fff;
                     }
+                }
+            }
+
+            .sub-category {
+                position: relative;
+                width: 452px;
+                height: 260px;
+                background-color: #fff;
+                position: absolute;
+                top: 0;
+                left: 226px;
+                z-index: 11;
+                box-sizing: border-box;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                border-right: 1px solid #ccc;
+
+                h2 {
                 }
             }
         }
@@ -46,6 +67,7 @@
 
     .main {
         width: 974px;
+        position: relative;
         
         .title {
             height: 44px;
@@ -64,6 +86,8 @@
         .carousel-wrapper {
             position: relative;
             width: 737px;
+            cursor: pointer;
+
             .carousel {
                 width: 737px;
                 height: 260px;
@@ -85,6 +109,7 @@
                 }
             }
 
+            // 前后按钮
             .slick-arrow  {
                 width: 30px;
                 height: 40px;
@@ -97,7 +122,6 @@
                 background-repeat: no-repeat;
                 cursor: pointer;
             }
-
             .slick-next {
                 right: 10px;
                 background-image: url(../../assets/images/slide-arrow-right.png);
@@ -106,6 +130,16 @@
                 background-image: url(../../assets/images/slide-arrow-left.png);
                 left: 10px;
             }
+
+        }
+        
+        .ad {
+            display: block;
+            height: 260px;
+            width: 237px;
+            position: absolute;
+            right: 0;
+            top: 44px;
         }
     }
     
