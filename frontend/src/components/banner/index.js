@@ -11,12 +11,29 @@ export default class Banner extends Component {
         }
     }
     
-    next(){
-        console.log('next')
-        console.log(this.refs.carousel)
-    }
-
+    
+    
     render() {
+        function SampleNextArrow(props) {
+            const { className, style, onClick } = props
+            return (
+                <div
+                    className={className}
+                    onClick={onClick}
+                ></div>
+            );
+        }
+    
+        function SamplePrevArrow(props) {
+            const { className, style, onClick } = props
+            return (
+                <div
+                    className={className}
+                    onClick={onClick}
+                ></div>
+            );
+        }
+
         const settings = {
             dots: true,
             arrows:true,
@@ -25,6 +42,8 @@ export default class Banner extends Component {
             autoplay: true,
             slidesToShow: 1,
             slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />
         };
         return (
             <div className='banner'>
@@ -52,8 +71,6 @@ export default class Banner extends Component {
                         <a href="javascript:;" className="title-item">商户</a>
                     </div>
                     <div className="carousel-wrapper">
-                        <div className="arrow arrow-prev"></div>
-                        <div className="arrow arrow-next" onClick={()=>{this.next()}} ></div>
                         <Carousel {...settings} className='carousel' ref='carousel'>
                             <div><img src={require('../../assets/images/banner1.jpg')} alt=""/></div>
                             <div><img src={require('../../assets/images/banner2.jpg')} alt=""/></div>
