@@ -1,6 +1,6 @@
 .banner {
     width: 1200px;
-    height: 303px;
+    height: 304px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -19,17 +19,17 @@
 
         .category-wrapper {
             .category-list {
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 border-left: 1px solid #ccc;
-                border-bottom: 1px solid #ccc;
                 background-color: #f0f0f0;
                 .category-item {
                     box-sizing: border-box;
                     border-bottom: 1px solid #ccc;
-                    height: 53px;
-                    line-height: 53px;
+                    height: 52px;
+                    line-height: 50px;
                     font-size: 16px;
                     text-indent: 10px;
                     font-family: 'micsoft yahei';
@@ -58,6 +58,53 @@
                 padding: 0 20px;
                 text-decoration: none;
 
+            }
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 737px;
+            .carousel {
+                width: 737px;
+                height: 260px;
+                background: #364d79;
+                
+                h3 {
+                    color: #fff;
+                }
+    
+                .slick-dots {
+                    li {
+                        button,
+                        button.slick-active {
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+            }
+
+            .arrow {
+                width: 30px;
+                height: 40px;
+                position: absolute;
+                top: 110px;
+                z-index: 10;
+                background-color: rgba(0, 0, 0, 0.3);
+                background-size: 14px 25px;
+                background-position: center;
+                background-repeat: no-repeat;
+                cursor: pointer;
+            }
+
+            .arrow-next {
+                right: 10px;
+                background-image: url(../../assets/images/slide-arrow-right.png);
+            }
+            .arrow-prev {
+                background-image: url(../../assets/images/slide-arrow-left.png);
+                left: 10px;
             }
         }
     }

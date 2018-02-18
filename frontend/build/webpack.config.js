@@ -21,13 +21,15 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react']
+                        presets: ['env', 'react'],
+                        plugins: [
+                            ["import", { "libraryName": "antd", "style": true }] 
+                        ]
                     }
                 }
             },
             {
                 test: /\.(css|less)$/,
-                exclude: /node_modules/,
                 use: ['style-loader', 'css-loader', 'postcss-loader','less-loader']
             },
             {
