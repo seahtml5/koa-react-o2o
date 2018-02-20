@@ -38,10 +38,8 @@ export default class Home extends Component {
                     <img src={require('../../assets/images/logo.png')} alt="" className='logo'/>
                 </div>
                 <Banner />
-                
-                <SubTitle />
-                <br />
                 {/* 推荐列表 */}
+                <SubTitle />
                 <RecommendList />
             </div>
         )

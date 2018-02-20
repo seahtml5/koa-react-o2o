@@ -21,7 +21,7 @@ export default class SubTitle extends Component {
                             this.state.list.map((e,idx)=>{
                                 return (
                                     <li className="list-item" key={idx}>
-                                        <a herf='javascript:;'>{e}</a>
+                                        <a href='javascript:;'>{e}</a>
                                     </li>
                                 )
                             })
