@@ -64,8 +64,8 @@ export default class Admin extends Component {
                             <SubMenu key="sub7" title={<span><Icon type="file-text" />订单管理</span>}></SubMenu>
                         </Menu>
                     </Sider>
-                    <Layout style={{ padding: '0 2px 24px' }}>
-                        <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
+                    <Layout>
+                        <Content style={{ background: '#fff', padding: 10, margin: 0, minHeight: 280 }}>
                             {this.props.children}
                         </Content>
                     </Layout>
