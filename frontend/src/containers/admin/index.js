@@ -34,7 +34,7 @@ export default class Admin extends Component {
                     <Sider width={200} style={{ background: '#f0f0f0' }}>
                         <Menu
                             mode="inline"
-                            defaultSelectedKeys={['1']}
+                            defaultSelectedKeys={['admin/category']}
                             defaultOpenKeys={['sub1']}
                             style={{ height: '100%', borderRight: 0, fontSize: '14px', background: '#eee' }}
                             onClick={(e)=>{this.clickHandler(e)}}

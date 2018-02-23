@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
+import { Router, Route, IndexRoute, Redirect } from 'react-router'
 
 import App from '@/containers/app'
 import NotFound from '@/containers/404'
@@ -14,8 +14,10 @@ export default class RouterMap extends Component {
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home} name='首页'/>
-                    {/* 子路由 */}
+                    {/* 重定向 */}
+                    <Redirect from="/admin" to="/admin/category" />
                     <Route path='/admin' component={Admin} name='管理平台'>
+                        {/* 子路由 */}
                         <Route path='category' component={Category} name='生活服务类'/>
                         <Route path='city' component={City} name='城市列表'/>
                     </Route>
