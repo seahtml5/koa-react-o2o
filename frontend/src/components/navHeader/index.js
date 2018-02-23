@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { hashHistory } from 'react-router'
 import './style'
+
 
 export default class Header extends Component {
     constructor(){
@@ -23,6 +25,11 @@ export default class Header extends Component {
         this.setState({
             hover: false
         })
+    }
+
+    // 路由跳转
+    goRouter(path){
+        hashHistory.push(path)
     }
 
     render() {
@@ -56,13 +63,13 @@ export default class Header extends Component {
                             onMouseEnter={()=>this.onMouseEnterHandler()}
                             onMouseLeave={()=>this.onMouseLeaveHandler()}
                         >
-                            <span>切换城市</span> 
+                            <span className='pointer'>切换城市</span> 
                             <i className={this.state.hover? 'on': ''}></i>
                             {
                                 this.state.hover ? renderHotCity() : ''
                             }
                         </div>
-                        <span>商户中心</span>
+                        <span className='pointer' onClick={()=>{this.goRouter('/admin')}}>商户中心</span>
                     </div>
                     <div className="login-wrapper">
                         <a href="javascript:;" className="login">登录</a>
