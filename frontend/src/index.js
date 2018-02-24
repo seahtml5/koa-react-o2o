@@ -12,7 +12,7 @@ const store = createStore(rootReducer)
 import RouterMap from './router/routerMap'
 render(
     <Provider store={store}>
-        <RouterMap history={hashHistory} />
+        <RouterMap history={hashHistory}/>
     </Provider>,
     document.getElementById('root')
 )

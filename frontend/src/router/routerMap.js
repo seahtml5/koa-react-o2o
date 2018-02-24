@@ -8,12 +8,17 @@ import Admin from '@/containers/admin'
 import Category from '@/containers/admin/category'
 import City from '@/containers/admin/city'
 
+import TestForm from '@/containers/testForm'
+
 export default class RouterMap extends Component {
     render() {
         return (
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home} name='首页'/>
+                    {/* test */}
+                    <Route path='/test' component={TestForm}/>
+
                     {/* 重定向 */}
                     <Redirect from="/admin" to="/admin/category" />
                     <Route path='/admin' component={Admin} name='管理平台'>
