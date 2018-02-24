@@ -10,12 +10,13 @@ const formItemLayout = {
 }
 
 
-export default class Category extends Component {
+class Cate extends Component {
     constructor(props){
         super(props)
         this.state = {
             visible: false,
-            loading: false
+            loading: false,
+            value:'一级分类'
         }
 
     }
@@ -28,19 +29,26 @@ export default class Category extends Component {
     }
 
     // 确定
-    handleOk(){
-        console.log("ok")
-        this.setState({
-            loading: true
-        })
-
-        setTimeout(() => {
-            this.setState({
-                visible: false,
-                loading:false
-            })
-            
-        }, 1000);
+    handleOk(e){
+        console.log(e)
+        e.preventDefault();
+        // 表单验证
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log("ok")
+                this.setState({
+                    loading: true
+                })
+        
+                setTimeout(() => {
+                    this.setState({
+                        visible: false,
+                        loading:false
+                    })
+                    
+                }, 1000);
+            }
+        });
     }
 
     // 取消
@@ -51,10 +59,7 @@ export default class Category extends Component {
     }
     
     componentDidMount() {
-        // To disabled submit button at the beginning.
-        // this.props.form.validateFields();
-        // console.log(this.props)
-
+        
     }
     render() {
         const columns = [
@@ -123,8 +128,8 @@ export default class Category extends Component {
             },
         ];
         
-        // const { getFieldDecorator } = this.props.form;
-        // console.log(this.props.form)
+        const { getFieldDecorator } = this.props.form;
+
         return (
             <div className='category'>
                 <div className="btn-wrapper">
@@ -134,22 +139,29 @@ export default class Category extends Component {
                 <Modal
                     title="新增"
                     visible={this.state.visible}
-                    onOk={e=>{this.handleOk()}}
+                    onOk={e=>{this.handleOk(e)}}
                     onCancel={e=>{this.handleCancel()}}
                     confirmLoading={this.state.loading}                    
                 >
-                    <Form>
+                    <Form onSubmit={e => this.handleOk()}>
                         <FormItem {...formItemLayout} label="生活服务类名称">
-                        <Input placeholder="请输入名称" />
-
-                            {/* {getFieldDecorator('categoryName', {
+                            {getFieldDecorator('categoryName', {
                                 rules: [{
                                     required: true,
                                     message: '请输入名称',
                                 }],
                             })(
                                 <Input placeholder="请输入名称" />
-                            )} */}
+                            )}
+                        </FormItem>
+                        <FormItem {...formItemLayout} label="分类栏目">
+                            <Select
+                                value={this.state.value}
+                                onChange={e=>{this.handleChange()}}
+                            >
+                                <Option value="rmb">RMB</Option>
+                                <Option value="dollar">Dollar</Option>
+                            </Select>
                         </FormItem>
                     </Form>
                 </Modal>
@@ -157,3 +169,6 @@ export default class Category extends Component {
         )
     }
 }
+
+const Category = Form.create()(Cate);
+export default Category
