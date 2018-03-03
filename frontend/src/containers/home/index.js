@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './style'
-import { HOME } from '@/api/home'
+import { HOME } from '@/api/api'
 
 import NavHeader from '@/components/navHeader'
 import Banner from '@/components/banner'

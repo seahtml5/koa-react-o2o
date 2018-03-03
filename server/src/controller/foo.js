@@ -3,6 +3,7 @@ module.exports = {
         ctx.type = 'html'
         ctx.body = '<h1>hello wkoa1</h1>'
     },
+    
     user(ctx,next,sev) {
         let date =   sev.util.formatDate()
         let name =   sev.foo.getName()

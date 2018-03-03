@@ -5,6 +5,8 @@ koa + mysql + react 前后分离 商城项目
 前端页面     
 ```bash
     cd frontend
+
+    npm i 
     
     npm run dev
 ```
@@ -13,6 +15,8 @@ koa + mysql + react 前后分离 商城项目
 服务端     
 ```bash
     cd server
+
+    npm i
 
     npm run dev
 
@@ -26,10 +30,4 @@ koa + mysql + react 前后分离 商城项目
     # 引入数据
     SOURCE 01data/04node/07o2o/sql.sql
 
-    # 修改数据库提示符PROMPT
-    PROMTP \h@\d>
-
-    \h 服务器名称
-    \d 数据库名称
-    \u 当前用户
 ```

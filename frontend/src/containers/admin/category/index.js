@@ -3,6 +3,7 @@ import { Table, Icon, Button, Modal, Form, Input, Select } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
+import { ADD_CATEGORY } from '@/api/api'
 
 const formItemLayout = {
     labelCol: { span: 6 },
@@ -16,7 +17,8 @@ class Cate extends Component {
         this.state = {
             visible: false,
             loading: false,
-            value:'一级分类'
+            categoryName:'',
+            parentId:'0',
         }
 
     }
@@ -30,31 +32,57 @@ class Cate extends Component {
 
     // 确定
     handleOk(e){
-        console.log(e)
         e.preventDefault();
         // 表单验证
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log("ok")
                 this.setState({
                     loading: true
                 })
-        
-                setTimeout(() => {
-                    this.setState({
-                        visible: false,
-                        loading:false
-                    })
+                this.submitAddCate()
+                // setTimeout(() => {
+                //     this.setState({
+                //         visible: false,
+                //         loading:false
+                //     })
                     
-                }, 1000);
+                // }, 1000);
             }
         });
+    }
+
+    // 输入categoryName
+    inputName(e){
+        let categoryName = e.target.value
+        this.setState({
+            categoryName
+        })
+    }
+
+    // 新增分类
+    submitAddCate(){
+        let para = {
+            parent_id:this.state.parentId,
+            name:this.state.categoryName
+        }
+        ADD_CATEGORY(para).then(res=>{
+            console.log(res)
+        },rej=>{
+
+        })
     }
 
     // 取消
     handleCancel(){
         this.setState({
             visible: false
+        })
+    }
+
+    // 选择分类栏目
+    handleSelect(value){
+        this.setState({
+            parentId:value
         })
     }
     
@@ -136,6 +164,8 @@ class Cate extends Component {
                     <Button type="primary" onClick={e=>{this.handleAdd()}}>新增</Button>
                 </div>
                 <Table columns={columns} dataSource={data} />
+
+                {/* 新增分类 */}
                 <Modal
                     title="新增"
                     visible={this.state.visible}
@@ -151,16 +181,16 @@ class Cate extends Component {
                                     message: '请输入名称',
                                 }],
                             })(
-                                <Input placeholder="请输入名称" />
+                                <Input placeholder="请输入名称" onChange={(e)=>{this.inputName(e)}}/>
                             )}
                         </FormItem>
                         <FormItem {...formItemLayout} label="分类栏目">
                             <Select
-                                value={this.state.value}
-                                onChange={e=>{this.handleChange()}}
+                                value={this.state.parentId}
+                                onChange={e => { this.handleSelect(e)}}
                             >
-                                <Option value="rmb">RMB</Option>
-                                <Option value="dollar">Dollar</Option>
+                                <Option value="0">一级分类</Option>
+                                <Option value="1">二级分类</Option>
                             </Select>
                         </FormItem>
                     </Form>

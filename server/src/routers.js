@@ -1,8 +1,8 @@
 module.exports = (app)=>{
-    const clr = app.controller
+    const ctr = app.controller
     return {
-        'get /': clr.foo.home,
-        'get /user': clr.foo.user
-
+        'get /': ctr.foo.home,
+        'get /user': ctr.foo.user,
+        'post /add_category': ctr.category.addCategory,
     }
 }
