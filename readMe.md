@@ -1,4 +1,4 @@
-# o2o           
+# koa-react-o2o           
 koa + mysql + react 前后分离 商城项目       
 
 ## frontend      
