@@ -1,13 +1,13 @@
 module.exports = {
-    home(ctx,next,sev) {
+    home(ctx) {
         ctx.type = 'html'
         ctx.body = '<h1>hello wkoa1</h1>'
     },
     
-    user(ctx,next,sev) {
-        let date =   sev.util.formatDate()
+    user(ctx,next,sev,util) {
+        let date =   util.formatDate()
         let name =   sev.foo.getName()
-        let greet = 'greeting from user1 ' + date + ' ' + name
+        let greet = 'greeting from user ' + date + ' ' + name
         ctx.body = greet
     }
 }

@@ -2,6 +2,7 @@ const fs = require('fs')
 const Koa = require('koa')
 const Router = require('koa-router')
 const Loader = require('./loader')
+const Util = require('../util')
 
 class Wkoa extends Koa {
     constructor(){
@@ -11,6 +12,7 @@ class Wkoa extends Koa {
         this.loader = new Loader()
         this.controller = {}
         this.service = {}
+        this.util = Util
         this.setController()
         this.setService()
     }
@@ -25,7 +27,7 @@ class Wkoa extends Koa {
                 const CB = routers[key]
 
                 this.router[METHOD](URL,(ctx,next)=>{
-                    CB(ctx,next,this.service)
+                    CB(ctx,next,this.service,this.util)
                 })
             })
             return app.router.routes()
@@ -46,5 +48,7 @@ class Wkoa extends Koa {
             this.controller[clr.name] = clr.module
         })
     }
+
+
 }
 module.exports = Wkoa

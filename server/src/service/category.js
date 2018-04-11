@@ -22,6 +22,7 @@ module.exports = {
         let res = validateAddCategory(data)
         if(!res.pass) return res
         //todo 数据库操作
+        result.data = 'test'
         return result
     }
 

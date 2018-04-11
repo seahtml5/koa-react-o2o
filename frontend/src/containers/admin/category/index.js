@@ -40,13 +40,6 @@ class Cate extends Component {
                     loading: true
                 })
                 this.submitAddCate()
-                // setTimeout(() => {
-                //     this.setState({
-                //         visible: false,
-                //         loading:false
-                //     })
-                    
-                // }, 1000);
             }
         });
     }
@@ -66,6 +59,7 @@ class Cate extends Component {
             name:this.state.categoryName
         }
         ADD_CATEGORY(para).then(res=>{
+            this.setState({loading:false})
             console.log(res)
         },rej=>{
 

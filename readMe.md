@@ -25,7 +25,7 @@ koa + mysql + react 前后分离 商城项目
 ## mysql        
 ```sql
     # 建表
-    CREATE DATABASE `o2o_db` DEFAULT CHARSET utf8;
+    CREATE DATABASE `db_o2o` DEFAULT CHARSET utf8;
 
     # 引入数据
     SOURCE 01data/04node/07o2o/sql.sql
