@@ -25,9 +25,9 @@ class Wkoa extends Koa {
                 const METHOD = key.split(' ')[0]
                 const URL = key.split(' ')[1]
                 const CB = routers[key]
-
-                this.router[METHOD](URL,(ctx,next)=>{
-                    CB(ctx,next,this.service,this.util)
+                // 此处需使用async await 语法 否则获取不到数据库查询
+                app.router[METHOD](URL, async(ctx)=>{
+                   await CB(ctx,this.service,this.util)
                 })
             })
             return app.router.routes()

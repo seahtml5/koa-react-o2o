@@ -2,8 +2,7 @@ module.exports = {
     mysql: {
         'host': 'localhost',
         'user': 'root',
-        'password': '',
-        'database': 'segment2',
-        'port': '3306'
+        'password': '123456',
+        'database': 'db_o2o',
     }
 };

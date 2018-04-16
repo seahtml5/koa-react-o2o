@@ -1,30 +1,22 @@
-// 验证addCategory参数
-function validateAddCategory(data){
-    let res = {
-        pass:true,
-        msg:''
-    }
-    if(data.parent_id == ''){
-        res.pass = false
-        res.msg = '缺少 parent_id 参数'
-    }
-    if(data.name == ''){
-        res.pass = false
-        res.msg = '缺少name参数'
-    }
-    return res
-}
+
+
 
 module.exports = {
     // 新增
-    addCategory(data){
-        let result = {}
-        let res = validateAddCategory(data)
-        if(!res.pass) return res
-        //todo 数据库操作
-        result.data = 'test'
+    async addCategory(util){
+        let result = {
+            data:1
+        }
+        let sql = 'select * from o2o_category'
+        let value = ['tom5']
+        console.log(2)
+        await util.query(sql).then((res)=>{
+            console.log(res)
+            result.data = res[0]
+        })
+        console.log(3)
         return result
-    }
-
-
+        
+        
+    },
 }

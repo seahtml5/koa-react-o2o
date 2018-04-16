@@ -1,4 +1,29 @@
+const mysql = require('mysql');
+const config = require('../dbconfig')
+
+const pool = mysql.createPool(config.mysql);
+
 module.exports = {
+    // mysql查询
+    query(sql,val){
+        return new Promise((resolve,reject)=>{
+            pool.getConnection( (err, connection) => {
+                if(err){
+                    reject(err)
+                }else {
+                    connection.query(sql,val,(error,result)=>{
+                        if(error){
+                            reject(error)
+                        }else {
+                            resolve(result)
+                        }
+                        connection.release()
+                    })
+                }
+            });
+        })
+    },
+
     // restful 成功
     success(data) {
         let res = {}
@@ -16,6 +41,9 @@ module.exports = {
         res.data = data
         return res
     },
+
+    // 登陆过期
+    
 
     // 格式化日期 yy-mm-dd
     formatDate(val) {

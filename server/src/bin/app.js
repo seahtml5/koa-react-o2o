@@ -10,16 +10,3 @@ app.setRouters()
 app.listen(3001,()=>{
     console.log('server running at localhost:3001')
 })
-
-
-
-
-
-
-
-
-
-
-
-
-

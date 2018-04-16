@@ -4,5 +4,7 @@ module.exports = (app)=>{
         'get /': ctr.foo.home,
         'get /user': ctr.foo.user,
         'post /add_category': ctr.category.addCategory,
+        'get /search_category': ctr.category.searchCategory,
+
     }
 }

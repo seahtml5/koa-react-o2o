@@ -5,6 +5,17 @@
     # start
     npm run dev
 ```
+## notes
+controller 做数据校验
+service 仅做数据库操作 数据处理
 
 ## todo 
-独立一个util模块 用来包装工具函数 在service中调用
+
+
+
+## notes
+controller 数据校验
+错误处理
+
+koa-session
+koa-static
