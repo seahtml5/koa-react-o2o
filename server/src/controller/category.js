@@ -1,16 +1,20 @@
+const _ = require('lodash');
+
 // 验证addCategory参数
 function validateAddCategory(req) {
     let res = {
         pass: true,
         msg: ''
     }
-    if (req.parent_id === undefined || req.parent_id == '') {
+
+    if(_.isEmpty(req.parent_id)){
         res.pass = false
-        res.msg = '缺少parent_id参数'
+        res.msg = '缺少parent_id'
     }
-    if (!req.name) {
+
+    if( _.isEmpty(req.name)){
         res.pass = false
-        res.msg = '缺少name参数'
+        res.msg = '缺少name'
     }
     return res
 }
@@ -20,23 +24,14 @@ module.exports = {
     // 添加分类
     async addCategory(ctx,sev,util) {
         let req = ctx.request.body
-        console.log(1)
 
-        // 可行
-        // let sql = 'SELECT * from o2o_category'
-        //  await util.query(sql).then((result) => {
-        //     console.log(3)
-        //     console.log(res)
-        //     console.log(4)
-        //     res = result[0]
-        //     console.log(res)
-        // })
-        // console.log(555)
-        // console.log(res)
-        // ctx.body = res
+        let valid = validateAddCategory(req)
+        if(!valid.pass){
+            ctx.body = util.error(valid.msg)
+            return
+        }
 
-        let res =  await sev.category.addCategory(util)
-        console.log(4)
+        let res =  await sev.category.addCategory(req,util)
         ctx.body = res
     },
 
