@@ -30,9 +30,14 @@ module.exports = {
             ctx.body = util.error(valid.msg)
             return
         }
-
         let res =  await sev.category.addCategory(req,util)
         ctx.body = res
     },
-
+    
+    // 查询一级分类
+    async categoryLevOne(ctx,sev,util){
+   
+        let res = await sev.category.categoryLevOne(util)
+        ctx.body = res
+    }
 }

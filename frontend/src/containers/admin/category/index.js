@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import { Table, Icon, Button, Modal, Form, Input, Select } from 'antd';
+import { Table, Icon, Button, Modal, Form, Input, Select, notification } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-import { ADD_CATEGORY } from '@/api/api'
+import { ADD_CATEGORY, CATEFORY_LEV_ONE } from '@/api/api'
 
 const formItemLayout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 10 },
 }
 
+// 成功/失败 提示
+const notifiy = (type,msg) => {
+    notification[type]({
+        message: msg
+    });
+};
 
 class Cate extends Component {
     constructor(props){
@@ -21,6 +27,13 @@ class Cate extends Component {
             parentId:'0',
         }
 
+    }
+
+    // 获取一级分类
+    getCategoryLevOne(){
+        CATEFORY_LEV_ONE().then(res=>{
+            console.log(res)
+        })
     }
     
     // 新增
@@ -58,9 +71,19 @@ class Cate extends Component {
             parent_id:this.state.parentId,
             name:this.state.categoryName
         }
+        this.setState({
+            loading: true
+        })
         ADD_CATEGORY(para).then(res=>{
             this.setState({loading:false})
-            console.log(res)
+            if(res.data.code === 200){
+                notifiy('success',res.data.msg)
+                this.setState({
+                    visible: false
+                })
+            }else {
+                notifiy('error', res.data.msg)
+            }
         },rej=>{
 
         })
@@ -81,7 +104,7 @@ class Cate extends Component {
     }
     
     componentDidMount() {
-        
+        this.getCategoryLevOne()
     }
     render() {
         const columns = [

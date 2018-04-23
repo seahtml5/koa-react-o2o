@@ -1,12 +1,12 @@
-# 1生活服务表A
+# 1分类表A
 CREATE TABLE `o2o_category` (
     `id` INT(11) UNSIGNED  NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL DEFAULT '',
     `parent_id` INT(10) UNSIGNED NOT NULL  DEFAULT 0,
     `listorder` INT(8) UNSIGNED NOT NULL  DEFAULT 0,
     `status` TINYINT(1) NOT NULL DEFAULT 0,
-    `create_time` INT(11) NOT NULL DEFAULT 0,
-    `update_time` INT(11) NOT NULL DEFAULT 0,
+    `create_time` INT(13) NOT NULL DEFAULT 0,
+    `update_time` INT(13) NOT NULL DEFAULT 0,
     PRIMARY KEY(`id`),
     KEY parent_id(`parent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;  

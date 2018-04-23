@@ -26,23 +26,26 @@ module.exports = {
 
     // restful 成功
     success(data) {
-        let res = {}
-        res.code = 200
-        res.msg = 'success'
-        res.data = data
-        return res
+        let successResult = {
+            code:200,
+            msg:'success',
+            data:data
+        }
+        return successResult
     },
 
     // restful 错误
     error(data) {
-        let res = {}
-        res.code = 400
-        res.msg = 'error'
-        res.data = data
-        return res
+        let errorResult = {
+            code: 400,
+            msg: 'error',
+            data: data
+        }
+        return errorResult
     },
 
     // 登陆过期
+    // todo
     
 
     // 格式化日期 yy-mm-dd
