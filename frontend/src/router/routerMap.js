@@ -15,12 +15,11 @@ export default class RouterMap extends Component {
             <Router history={this.props.history}>
                 <Route path='/' component={App}>
                     <IndexRoute component={Home} name='首页'/>
-
                     {/* 重定向 */}
                     <Redirect from="/admin" to="/admin/category" />
                     <Route path='/admin' component={Admin} name='管理平台'>
                         {/* 子路由 */}
-                        <Route path='category' component={Category} name='生活服务类'/>
+                        <Route path='category/:id' component={Category} name='生活服务类'/>
                         <Route path='city' component={City} name='城市列表'/>
                     </Route>
                     <Route path='*' component={NotFound} name='404'/>

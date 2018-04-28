@@ -1,9 +1,12 @@
+/**
+ * 二级分类
+ */
 import React, { Component } from 'react'
 import { Table, Icon, Button, Modal, Form, Input, Select, notification } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 
-import { ADD_CATEGORY, CATEFORY_LEV_ONE } from '@/api/api'
+import { ADD_CATEGORY, CATEGORY_LEV_ONE } from '@/api'
 
 const formItemLayout = {
     labelCol: { span: 6 },
@@ -25,15 +28,9 @@ class Cate extends Component {
             loading: false,
             categoryName:'',
             parentId:'0',
+            categoryLevOne:[]
         }
 
-    }
-
-    // 获取一级分类
-    getCategoryLevOne(){
-        CATEFORY_LEV_ONE().then(res=>{
-            console.log(res)
-        })
     }
     
     // 新增
@@ -65,7 +62,7 @@ class Cate extends Component {
         })
     }
 
-    // 新增分类
+    // 提交新增分类
     submitAddCate(){
         let para = {
             parent_id:this.state.parentId,
@@ -78,6 +75,10 @@ class Cate extends Component {
             this.setState({loading:false})
             if(res.data.code === 200){
                 notifiy('success',res.data.msg)
+                // todo 
+                // redux
+                // 触发刷新一级分类刷新
+
                 this.setState({
                     visible: false
                 })
@@ -102,10 +103,7 @@ class Cate extends Component {
             parentId:value
         })
     }
-    
-    componentDidMount() {
-        this.getCategoryLevOne()
-    }
+
     render() {
         const columns = [
             {

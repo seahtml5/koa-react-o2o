@@ -17,14 +17,11 @@ module.exports = {
     // 查询一级分类
     async categoryLevOne(util){
         let result
-
-        let sql = 'SELECT id, name, listorder FROM o2o_category WHERE parent_id = 1'    // TODO parent_id = 0
+        let sql = 'SELECT id, name, listorder FROM o2o_category WHERE parent_id = 0'
 
         await util.query(sql).then(res=>{
-            console.log(res)
             result = util.success(res)
         }).catch(err=>{
-            console.log(err)
             result = util.error('error')
         })
         return result

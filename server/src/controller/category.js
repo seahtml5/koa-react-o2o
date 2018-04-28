@@ -35,7 +35,7 @@ module.exports = {
             ctx.body = util.error(valid.msg)
             return
         }
-        let res =  await sev.category.addCategory(util)
+        let res =  await sev.category.addCategory(util,req)
         ctx.body = res
     },
     
