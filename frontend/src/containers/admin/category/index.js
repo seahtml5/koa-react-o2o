@@ -2,11 +2,13 @@
  * 二级分类
  */
 import React, { Component } from 'react'
+import { connect} from 'react-redux'
 import { Table, Icon, Button, Modal, Form, Input, Select, notification } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
+import * as actionFile from '@/actions/action'
 
-import { ADD_CATEGORY, CATEGORY_LEV_ONE } from '@/api'
+import { ADD_CATEGORY, CATEGORY_LEV_TWO, CATEGORY_LEV_ONE } from '@/api'
 
 const formItemLayout = {
     labelCol: { span: 6 },
@@ -28,15 +30,38 @@ class Cate extends Component {
             loading: false,
             categoryName:'',
             parentId:'0',
-            categoryLevOne:[]
+            page:1,
         }
 
+    }
+
+    // 获取二级分类
+    getCategoryLevTwo(){
+        let { categoryLevOne } = this.props
+        let para = {
+            parent_id: this.props.params.id !== undefined ? this.props.params.id : categoryLevOne[0].id,
+            page: this.state.page
+        }
+        console.log(para)
+        
     }
     
     // 新增
     handleAdd(){
         this.setState({
             visible: true
+        })
+    }
+
+    // 更新一级分类
+    updateCategoryLevOne() {
+        const { dispatch, categoryLevOne } = this.props
+        CATEGORY_LEV_ONE().then(res => {
+            if (res.data.code === 200) {
+                let data = res.data.data
+                // 更新redux
+                dispatch(actionFile.updateCategoryLevOne(data))
+            }
         })
     }
 
@@ -54,18 +79,10 @@ class Cate extends Component {
         });
     }
 
-    // 输入categoryName
-    inputName(e){
-        let categoryName = e.target.value
-        this.setState({
-            categoryName
-        })
-    }
-
     // 提交新增分类
     submitAddCate(){
         let para = {
-            parent_id:this.state.parentId,
+            parent_id:this.state.parentId === '0' ? this.state.parentId : this.props.params.id,
             name:this.state.categoryName
         }
         this.setState({
@@ -75,13 +92,11 @@ class Cate extends Component {
             this.setState({loading:false})
             if(res.data.code === 200){
                 notifiy('success',res.data.msg)
-                // todo 
-                // redux
-                // 触发刷新一级分类刷新
-
                 this.setState({
                     visible: false
                 })
+                // 获取一级分类 更新redux
+                this.updateCategoryLevOne()
             }else {
                 notifiy('error', res.data.msg)
             }
@@ -103,6 +118,35 @@ class Cate extends Component {
             parentId:value
         })
     }
+
+    // 输入categoryName
+    inputName(e) {
+        let categoryName = e.target.value
+        this.setState({
+            categoryName
+        })
+    }
+
+    componentDidMount(){
+        // this.getCategoryLevTwo()
+
+    }
+    componentDidUpdate(){
+        // this.getCategoryLevTwo()
+        
+    }
+
+    // componentWillReceiveProps(nextProps) {
+    //     console.log('next',nextProps.location.pathname)
+    //     console.log('this',this.props.location.pathname)
+    //     console.log('========================')
+    //     if (nextProps.location.pathname == this.props.location.pathname) {
+    //         console.log('可以更新')
+    //     } 
+       
+    // }
+  
+
 
     render() {
         const columns = [
@@ -215,5 +259,13 @@ class Cate extends Component {
     }
 }
 
+function mapPropsState(state) {
+    return {
+        categoryLevOne: state.categoryLevOne
+    }
+}
+
 const Category = Form.create()(Cate);
-export default Category
+export default connect(
+    mapPropsState
+)(Category)

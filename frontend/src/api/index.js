@@ -10,3 +10,4 @@ export const CATEGORY_LEV_ONE = params => { return axios.get(`${base}/category_l
 
 // 获取二级分类
 export const CATEGORY_LEV_TWO = params => { return axios.get(`${base}/category_lev_two`,{params})}
+

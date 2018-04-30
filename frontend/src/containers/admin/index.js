@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { hashHistory } from 'react-router'
+import { connect } from 'react-redux'
+import * as actionFile from '@/actions/action'
 import './style'
 import { Layout, Menu, Breadcrumb, Icon, Spin } from 'antd';
+
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -10,25 +13,27 @@ import { CATEGORY_LEV_ONE } from '@/api'
 
 
 
-export default class Admin extends Component {
-    constructor(){
+class Admin extends Component {
+    constructor(props){
         super()
         this.state = {
-            categoryLevOne:[],  //一级分类列表
             loading:false,
         }
     }
 
     // 获取一级分类
     getCategoryLevOne() {
+        const { dispatch, categoryLevOne } = this.props
         CATEGORY_LEV_ONE().then(res => {
             if (res.data.code === 200) {
                 let data = res.data.data
-                this.setState({
-                    categoryLevOne: data
-                })
+                dispatch(actionFile.updateCategoryLevOne(data))
             }
         })
+    }
+
+    // 使用redux更新一级分类
+    updateCategoryLevOne(data){
 
     }
 
@@ -45,11 +50,14 @@ export default class Admin extends Component {
 
     componentWillMount() {
         this.getCategoryLevOne()
+        
     }
 
     render() {
+        // 一级分类
+        const { categoryLevOne } = this.props
         // 默认选中标签
-        const defaultSelectedKey = this.state.categoryLevOne.length > 0 ? 'admin/category/' + this.state.categoryLevOne[0].id : ''
+        const defaultSelectedKey = categoryLevOne.length > 0 ? 'admin/category/' + categoryLevOne[0].id : ''
 
         return (
             <div className='admin'>
@@ -63,7 +71,7 @@ export default class Admin extends Component {
                 <Layout>
                     <Sider width={200} style={{ background: '#f0f0f0',textAlign:'center' }}>
                         {
-                            this.state.categoryLevOne.length > 0 ?
+                            categoryLevOne.length > 0 ?
                         <Menu
                             mode="inline"
                             defaultSelectedKeys={[defaultSelectedKey]}
@@ -74,7 +82,7 @@ export default class Admin extends Component {
                             <SubMenu key="category" title={<span><Icon type="appstore-o" />分类管理</span>}>
                                 {/* 一级分类 */}
                                 {
-                                    this.state.categoryLevOne.map(e=>{
+                                    categoryLevOne.map(e=>{
                                         return <Menu.Item key={'admin/category/' + e.id}>{e.name}</Menu.Item>
                                     })
                                 }
@@ -108,3 +116,14 @@ export default class Admin extends Component {
         )
     }
 }
+
+
+function mapPropsState(state) {
+    return {
+        categoryLevOne:state.categoryLevOne
+    }
+}
+
+export default connect(
+    mapPropsState
+)(Admin)
