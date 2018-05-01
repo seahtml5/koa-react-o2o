@@ -5,19 +5,15 @@ import * as actionFile from '@/actions/action'
 import './style'
 import { Layout, Menu, Breadcrumb, Icon, Spin } from 'antd';
 
-
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-import { CATEGORY_LEV_ONE } from '@/api'
-
-
+import { CATEGORY_LEV_ONE, CATEGORY_LEV_TWO } from '@/api'
 
 class Admin extends Component {
     constructor(props){
         super()
         this.state = {
-            loading:false,
         }
     }
 
@@ -27,30 +23,54 @@ class Admin extends Component {
         CATEGORY_LEV_ONE().then(res => {
             if (res.data.code === 200) {
                 let data = res.data.data
+                // 更新一级分类
                 dispatch(actionFile.updateCategoryLevOne(data))
             }
         })
     }
 
-    // 使用redux更新一级分类
-    updateCategoryLevOne(data){
-
+    // 获取二级分类
+    getCategoryLevTwo(id){
+        const { dispatch, categoryLevTwo } = this.props
+        let para = {
+            parent_id:id,
+            page:1
+        }
+        CATEGORY_LEV_TWO(para).then(res=>{
+            if(res.data.code === 200){
+                let data = {
+                    data:res.data.data,
+                    total:res.data.total,
+                }
+                // TODO redux更新二级分类
+                dispatch(actionFile.updateCategoryLevTwo(data))
+            }      
+        })
     }
+
 
     // 路由跳转
     goRouter(path){
         hashHistory.push(path)
     }
 
+    // 点击一级分类
     clickHandler(e){
         if(e.key){
+            // 二级分类id
+            let idx = e.key.lastIndexOf('/')
+            let id = e.key.slice(idx+1)
+
+            // 获取二级分类
+            this.getCategoryLevTwo(id)
+
+            // 跳转二级分类页
             this.goRouter(e.key)
         }
     }
 
     componentWillMount() {
         this.getCategoryLevOne()
-        
     }
 
     render() {
@@ -120,7 +140,8 @@ class Admin extends Component {
 
 function mapPropsState(state) {
     return {
-        categoryLevOne:state.categoryLevOne
+        categoryLevOne: state.categoryLevOne,
+        categoryLevTwo: state.categoryLevTwo
     }
 }
 

@@ -36,15 +36,15 @@ class Cate extends Component {
     }
 
     // 获取二级分类
-    getCategoryLevTwo(){
-        let { categoryLevOne } = this.props
-        let para = {
-            parent_id: this.props.params.id !== undefined ? this.props.params.id : categoryLevOne[0].id,
-            page: this.state.page
-        }
-        console.log(para)
+    // getCategoryLevTwo(){
+    //     let { categoryLevOne } = this.props
+    //     let para = {
+    //         parent_id: this.props.params.id !== undefined ? this.props.params.id : categoryLevOne[0].id,
+    //         page: this.state.page
+    //     }
+    //     console.log(para)
         
-    }
+    // }
     
     // 新增
     handleAdd(){
@@ -61,6 +61,27 @@ class Cate extends Component {
                 let data = res.data.data
                 // 更新redux
                 dispatch(actionFile.updateCategoryLevOne(data))
+            }
+        })
+    }
+
+    // 获取二级分类
+    getCategoryLevTwo() {
+        const { dispatch, categoryLevOne, categoryLevTwo } = this.props
+        // let para = {
+        //     parent_id: this.props.params.id !== undefined ? this.props.params.id : categoryLevOne[0].id,
+        //     page: this.state.page
+        // }
+        console.log(categoryLevOne)
+        return
+        CATEGORY_LEV_TWO(para).then(res => {
+            if (res.data.code === 200) {
+                let data = {
+                    data: res.data.data,
+                    total: res.data.total,
+                }
+                dispatch(actionFile.updateCategoryLevTwo(data))
+                console.log('will', categoryLevTwo)
             }
         })
     }
@@ -127,26 +148,11 @@ class Cate extends Component {
         })
     }
 
-    componentDidMount(){
-        // this.getCategoryLevTwo()
+    componentWillMount(){
+        this.getCategoryLevTwo()
 
     }
-    componentDidUpdate(){
-        // this.getCategoryLevTwo()
-        
-    }
-
-    // componentWillReceiveProps(nextProps) {
-    //     console.log('next',nextProps.location.pathname)
-    //     console.log('this',this.props.location.pathname)
-    //     console.log('========================')
-    //     if (nextProps.location.pathname == this.props.location.pathname) {
-    //         console.log('可以更新')
-    //     } 
-       
-    // }
-  
-
+ 
 
     render() {
         const columns = [
@@ -261,7 +267,8 @@ class Cate extends Component {
 
 function mapPropsState(state) {
     return {
-        categoryLevOne: state.categoryLevOne
+        categoryLevOne: state.categoryLevOne,
+        categoryLevTwo: state.categoryLevTwo
     }
 }
 

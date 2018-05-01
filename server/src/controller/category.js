@@ -55,7 +55,13 @@ module.exports = {
      */
     async categoryLevTwo(ctx,sev,util){
         let query = ctx.request.query
-        
+        let requiredPara = ['parent_id','page']
+        let check = util.checkPara(requiredPara,query)
+        if(!check.flag){
+            ctx.body = util.error(check.str)
+            return
+        }
+
         let req = {
             parent_id: _.toNumber(query.parent_id),
             page: _.toNumber(query.page)

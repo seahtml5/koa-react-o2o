@@ -14,7 +14,20 @@ function categoryLevOne(state=[],action){
     }
 }
 
+// 二级分类
+function categoryLevTwo(state={},action){
+    switch(action.type){
+        case actionFile.UPDATE_CATEGORY_LEV_TWO:
+            return {
+                total:action.data.total,
+                data: action.data.data
+            }
+        default:
+            return state    
+    }
+}
 
 export default combineReducers({
     categoryLevOne,
+    categoryLevTwo
 })

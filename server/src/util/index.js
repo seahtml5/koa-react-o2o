@@ -1,5 +1,6 @@
 const mysql = require('mysql');
 const config = require('../dbconfig')
+const _ = require('lodash')
 
 const pool = mysql.createPool(config.mysql);
 
@@ -47,6 +48,30 @@ module.exports = {
     // 登陆过期
     // todo
     
+    
+    /**
+     * 验证客户端传参是否完整
+     * @param {Array} requiredPara  需要的参数列表
+     * @param {Object} gotPara       客户端传递的参数列表
+     */
+    // TODO
+    // 进一步封装成类似tp5验证
+    checkPara(requiredPara,gotPara){
+        let flag = true
+        let str = ''
+        _.each(requiredPara,function(val){
+            if(gotPara[val] === undefined) {
+                flag = false
+                str= '缺少参数'+ val
+                return false    // 结束循环
+            }
+        })
+        let checkResult = {
+            flag,
+            str
+        }
+        return checkResult
+    },
 
     // 格式化日期 yy-mm-dd
     formatDate(val) {
@@ -58,5 +83,6 @@ module.exports = {
 
         return `${y}-${m}-${d}`
     },
+
 
 }    
